@@ -1,0 +1,169 @@
+issue_date,lead_day,target_date,station,forecast_pm25,persistence,method
+2026-11-20,1,2026-11-20,Bhumkar Nagar,69.9,68.2,F3s
+2026-11-20,1,2026-11-20,Thergaon,57.9,55.4,F3s
+2026-11-20,1,2026-11-20,Transport Nagar-Nigdi,85.5,87.9,F3s
+2026-11-20,1,2026-11-20,Park Street Wakad,61.5,59.1,F3s
+2026-11-20,1,2026-11-20,Panchawati Pashan,70.2,72.3,F3s
+2026-11-20,1,2026-11-20,Savta Mali Nagar,66.4,65.6,F3s
+2026-11-20,1,2026-11-20,Savitribai Phule Pune University,53.7,54.0,F3s
+2026-11-20,1,2026-11-20,Gavalinagar,66.1,66.1,persistence (no D-2)
+2026-11-20,1,2026-11-20,Dhankawadi,64.8,62.2,F3s
+2026-11-20,1,2026-11-20,Revenue Colony-Shivajinagar,84.8,85.2,F3s
+2026-11-20,1,2026-11-20,Bhosari,71.0,73.0,F3s
+2026-11-20,1,2026-11-20,Katraj Dairy,45.0,41.8,F3s
+2026-11-20,1,2026-11-20,Hadapsar,80.6,82.2,F3s
+2026-11-20,1,2026-11-20,Mhada Colony,71.2,71.6,F3s
+2026-11-20,2,2026-11-21,Bhumkar Nagar,74.9,68.2,F3s
+2026-11-20,2,2026-11-21,Thergaon,66.7,55.4,F3s
+2026-11-20,2,2026-11-21,Transport Nagar-Nigdi,95.1,87.9,F3s
+2026-11-20,2,2026-11-21,Park Street Wakad,65.2,59.1,F3s
+2026-11-20,2,2026-11-21,Panchawati Pashan,63.6,72.3,F3s
+2026-11-20,2,2026-11-21,Savta Mali Nagar,75.0,65.6,F3s
+2026-11-20,2,2026-11-21,Savitribai Phule Pune University,50.3,54.0,F3s
+2026-11-20,2,2026-11-21,Gavalinagar,74.8,66.1,F3s
+2026-11-20,2,2026-11-21,Dhankawadi,65.6,62.2,F3s
+2026-11-20,2,2026-11-21,Revenue Colony-Shivajinagar,71.2,85.2,F3s
+2026-11-20,2,2026-11-21,Bhosari,77.4,73.0,F3s
+2026-11-20,2,2026-11-21,Katraj Dairy,46.7,41.8,F3s
+2026-11-20,2,2026-11-21,Hadapsar,67.9,82.2,F3s
+2026-11-20,2,2026-11-21,Mhada Colony,74.9,71.6,F3s
+2026-11-20,3,2026-11-22,Bhumkar Nagar,81.2,68.2,F3s
+2026-11-20,3,2026-11-22,Thergaon,71.0,55.4,F3s
+2026-11-20,3,2026-11-22,Transport Nagar-Nigdi,94.1,87.9,F3s
+2026-11-20,3,2026-11-22,Park Street Wakad,73.5,59.1,F3s
+2026-11-20,3,2026-11-22,Panchawati Pashan,81.0,72.3,F3s
+2026-11-20,3,2026-11-22,Savta Mali Nagar,81.5,65.6,F3s
+2026-11-20,3,2026-11-22,Savitribai Phule Pune University,63.4,54.0,F3s
+2026-11-20,3,2026-11-22,Gavalinagar,78.9,66.1,F3s
+2026-11-20,3,2026-11-22,Dhankawadi,68.5,62.2,F3s
+2026-11-20,3,2026-11-22,Revenue Colony-Shivajinagar,98.9,85.2,F3s
+2026-11-20,3,2026-11-22,Bhosari,80.5,73.0,F3s
+2026-11-20,3,2026-11-22,Katraj Dairy,47.3,41.8,F3s
+2026-11-20,3,2026-11-22,Hadapsar,83.2,82.2,F3s
+2026-11-20,3,2026-11-22,Mhada Colony,83.2,71.6,F3s
+2026-11-21,1,2026-11-21,Bhumkar Nagar,81.6,80.9,F3s
+2026-11-21,1,2026-11-21,Thergaon,54.2,50.5,F3s
+2026-11-21,1,2026-11-21,Transport Nagar-Nigdi,89.0,,F3s (D-1 filled from D-2)
+2026-11-21,1,2026-11-21,Park Street Wakad,64.9,62.2,F3s
+2026-11-21,1,2026-11-21,Panchawati Pashan,66.9,66.3,F3s
+2026-11-21,1,2026-11-21,Savta Mali Nagar,66.2,63.6,F3s
+2026-11-21,1,2026-11-21,Savitribai Phule Pune University,51.1,49.9,F3s
+2026-11-21,1,2026-11-21,Gavalinagar,73.1,70.7,F3s
+2026-11-21,1,2026-11-21,Dhankawadi,80.3,78.6,F3s
+2026-11-21,1,2026-11-21,Revenue Colony-Shivajinagar,80.1,81.8,F3s
+2026-11-21,1,2026-11-21,Bhosari,80.7,79.7,F3s
+2026-11-21,1,2026-11-21,Katraj Dairy,49.4,46.4,F3s
+2026-11-21,1,2026-11-21,Hadapsar,96.8,98.3,F3s
+2026-11-21,1,2026-11-21,Mhada Colony,63.8,66.3,F3s
+2026-11-21,2,2026-11-22,Bhumkar Nagar,93.4,80.9,F3s
+2026-11-21,2,2026-11-22,Thergaon,64.3,50.5,F3s
+2026-11-21,2,2026-11-22,Transport Nagar-Nigdi,96.1,,F3s (D-1 filled from D-2)
+2026-11-21,2,2026-11-22,Park Street Wakad,75.0,62.2,F3s
+2026-11-21,2,2026-11-22,Panchawati Pashan,73.9,66.3,F3s
+2026-11-21,2,2026-11-22,Savta Mali Nagar,78.8,63.6,F3s
+2026-11-21,2,2026-11-22,Savitribai Phule Pune University,58.9,49.9,F3s
+2026-11-21,2,2026-11-22,Gavalinagar,83.5,70.7,F3s
+2026-11-21,2,2026-11-22,Dhankawadi,81.4,78.6,F3s
+2026-11-21,2,2026-11-22,Revenue Colony-Shivajinagar,94.6,81.8,F3s
+2026-11-21,2,2026-11-22,Bhosari,91.8,79.7,F3s
+2026-11-21,2,2026-11-22,Katraj Dairy,51.9,46.4,F3s
+2026-11-21,2,2026-11-22,Hadapsar,102.1,98.3,F3s
+2026-11-21,2,2026-11-22,Mhada Colony,75.6,66.3,F3s
+2026-11-21,3,2026-11-23,Bhumkar Nagar,95.3,80.9,F3s
+2026-11-21,3,2026-11-23,Thergaon,65.7,50.5,F3s
+2026-11-21,3,2026-11-23,Transport Nagar-Nigdi,94.9,,F3s (D-1 filled from D-2)
+2026-11-21,3,2026-11-23,Park Street Wakad,74.0,62.2,F3s
+2026-11-21,3,2026-11-23,Panchawati Pashan,72.5,66.3,F3s
+2026-11-21,3,2026-11-23,Savta Mali Nagar,78.7,63.6,F3s
+2026-11-21,3,2026-11-23,Savitribai Phule Pune University,58.1,49.9,F3s
+2026-11-21,3,2026-11-23,Gavalinagar,83.0,70.7,F3s
+2026-11-21,3,2026-11-23,Dhankawadi,83.6,78.6,F3s
+2026-11-21,3,2026-11-23,Revenue Colony-Shivajinagar,96.1,81.8,F3s
+2026-11-21,3,2026-11-23,Bhosari,89.5,79.7,F3s
+2026-11-21,3,2026-11-23,Katraj Dairy,52.9,46.4,F3s
+2026-11-21,3,2026-11-23,Hadapsar,105.6,98.3,F3s
+2026-11-21,3,2026-11-23,Mhada Colony,77.0,66.3,F3s
+2026-11-22,1,2026-11-22,Bhumkar Nagar,84.7,80.6,F3s
+2026-11-22,1,2026-11-22,Thergaon,75.1,69.8,F3s
+2026-11-22,1,2026-11-22,Transport Nagar-Nigdi,63.9,63.9,persistence (no D-2)
+2026-11-22,1,2026-11-22,Park Street Wakad,66.1,61.6,F3s
+2026-11-22,1,2026-11-22,Panchawati Pashan,66.8,64.5,F3s
+2026-11-22,1,2026-11-22,Savta Mali Nagar,86.9,79.5,F3s
+2026-11-22,1,2026-11-22,Savitribai Phule Pune University,59.7,55.3,F3s
+2026-11-22,1,2026-11-22,Gavalinagar,85.2,78.3,F3s
+2026-11-22,1,2026-11-22,Dhankawadi,77.4,75.1,F3s
+2026-11-22,1,2026-11-22,Revenue Colony-Shivajinagar,76.6,71.3,F3s
+2026-11-22,1,2026-11-22,Bhosari,92.7,86.2,F3s
+2026-11-22,1,2026-11-22,Katraj Dairy,49.3,46.4,F3s
+2026-11-22,1,2026-11-22,Hadapsar,89.8,87.7,F3s
+2026-11-22,1,2026-11-22,Mhada Colony,81.4,78.3,F3s
+2026-11-22,2,2026-11-23,Bhumkar Nagar,90.7,80.6,F3s
+2026-11-22,2,2026-11-23,Thergaon,78.8,69.8,F3s
+2026-11-22,2,2026-11-23,Transport Nagar-Nigdi,68.4,63.9,F3s
+2026-11-22,2,2026-11-23,Park Street Wakad,70.3,61.6,F3s
+2026-11-22,2,2026-11-23,Panchawati Pashan,68.0,64.5,F3s
+2026-11-22,2,2026-11-23,Savta Mali Nagar,88.5,79.5,F3s
+2026-11-22,2,2026-11-23,Savitribai Phule Pune University,60.4,55.3,F3s
+2026-11-22,2,2026-11-23,Gavalinagar,83.3,78.3,F3s
+2026-11-22,2,2026-11-23,Dhankawadi,79.5,75.1,F3s
+2026-11-22,2,2026-11-23,Revenue Colony-Shivajinagar,82.5,71.3,F3s
+2026-11-22,2,2026-11-23,Bhosari,88.9,86.2,F3s
+2026-11-22,2,2026-11-23,Katraj Dairy,51.6,46.4,F3s
+2026-11-22,2,2026-11-23,Hadapsar,93.4,87.7,F3s
+2026-11-22,2,2026-11-23,Mhada Colony,84.3,78.3,F3s
+2026-11-22,3,2026-11-24,Bhumkar Nagar,81.4,80.6,F3s
+2026-11-22,3,2026-11-24,Thergaon,71.0,69.8,F3s
+2026-11-22,3,2026-11-24,Transport Nagar-Nigdi,57.5,63.9,F3s
+2026-11-22,3,2026-11-24,Park Street Wakad,61.5,61.6,F3s
+2026-11-22,3,2026-11-24,Panchawati Pashan,58.9,64.5,F3s
+2026-11-22,3,2026-11-24,Savta Mali Nagar,77.9,79.5,F3s
+2026-11-22,3,2026-11-24,Savitribai Phule Pune University,52.5,55.3,F3s
+2026-11-22,3,2026-11-24,Gavalinagar,74.5,78.3,F3s
+2026-11-22,3,2026-11-24,Dhankawadi,70.9,75.1,F3s
+2026-11-22,3,2026-11-24,Revenue Colony-Shivajinagar,75.4,71.3,F3s
+2026-11-22,3,2026-11-24,Bhosari,78.1,86.2,F3s
+2026-11-22,3,2026-11-24,Katraj Dairy,45.9,46.4,F3s
+2026-11-22,3,2026-11-24,Hadapsar,81.7,87.7,F3s
+2026-11-22,3,2026-11-24,Mhada Colony,75.3,78.3,F3s
+2026-11-23,1,2026-11-23,Bhumkar Nagar,94.0,88.8,F3s
+2026-11-23,1,2026-11-23,Thergaon,73.3,69.2,F3s
+2026-11-23,1,2026-11-23,Transport Nagar-Nigdi,73.0,71.8,F3s
+2026-11-23,1,2026-11-23,Park Street Wakad,67.1,61.6,F3s
+2026-11-23,1,2026-11-23,Panchawati Pashan,72.8,70.4,F3s
+2026-11-23,1,2026-11-23,Savta Mali Nagar,89.2,85.0,F3s
+2026-11-23,1,2026-11-23,Savitribai Phule Pune University,53.8,49.3,F3s
+2026-11-23,1,2026-11-23,Gavalinagar,81.7,80.0,F3s
+2026-11-23,1,2026-11-23,Dhankawadi,80.7,75.1,F3s
+2026-11-23,1,2026-11-23,Revenue Colony-Shivajinagar,84.4,78.0,F3s
+2026-11-23,1,2026-11-23,Bhosari,99.3,100.1,F3s
+2026-11-23,1,2026-11-23,Katraj Dairy,33.4,29.4,F3s
+2026-11-23,1,2026-11-23,Hadapsar,94.8,,F3s (D-1 filled from D-2)
+2026-11-23,1,2026-11-23,Mhada Colony,80.6,77.7,F3s
+2026-11-23,2,2026-11-24,Bhumkar Nagar,84.0,88.8,F3s
+2026-11-23,2,2026-11-24,Thergaon,65.6,69.2,F3s
+2026-11-23,2,2026-11-24,Transport Nagar-Nigdi,61.9,71.8,F3s
+2026-11-23,2,2026-11-24,Park Street Wakad,58.8,61.6,F3s
+2026-11-23,2,2026-11-24,Panchawati Pashan,61.6,70.4,F3s
+2026-11-23,2,2026-11-24,Savta Mali Nagar,78.9,85.0,F3s
+2026-11-23,2,2026-11-24,Savitribai Phule Pune University,45.8,49.3,F3s
+2026-11-23,2,2026-11-24,Gavalinagar,71.3,80.0,F3s
+2026-11-23,2,2026-11-24,Dhankawadi,70.2,75.1,F3s
+2026-11-23,2,2026-11-24,Revenue Colony-Shivajinagar,79.5,78.0,F3s
+2026-11-23,2,2026-11-24,Bhosari,83.6,100.1,F3s
+2026-11-23,2,2026-11-24,Katraj Dairy,29.6,29.4,F3s
+2026-11-23,2,2026-11-24,Hadapsar,83.2,,F3s (D-1 filled from D-2)
+2026-11-23,2,2026-11-24,Mhada Colony,72.9,77.7,F3s
+2026-11-23,3,2026-11-25,Bhumkar Nagar,86.3,88.8,F3s
+2026-11-23,3,2026-11-25,Thergaon,68.0,69.2,F3s
+2026-11-23,3,2026-11-25,Transport Nagar-Nigdi,62.5,71.8,F3s
+2026-11-23,3,2026-11-25,Park Street Wakad,59.8,61.6,F3s
+2026-11-23,3,2026-11-25,Panchawati Pashan,61.8,70.4,F3s
+2026-11-23,3,2026-11-25,Savta Mali Nagar,77.9,85.0,F3s
+2026-11-23,3,2026-11-25,Savitribai Phule Pune University,45.7,49.3,F3s
+2026-11-23,3,2026-11-25,Gavalinagar,70.1,80.0,F3s
+2026-11-23,3,2026-11-25,Dhankawadi,74.1,75.1,F3s
+2026-11-23,3,2026-11-25,Revenue Colony-Shivajinagar,79.8,78.0,F3s
+2026-11-23,3,2026-11-25,Bhosari,81.3,100.1,F3s
+2026-11-23,3,2026-11-25,Katraj Dairy,33.9,29.4,F3s
+2026-11-23,3,2026-11-25,Hadapsar,83.4,,F3s (D-1 filled from D-2)
+2026-11-23,3,2026-11-25,Mhada Colony,72.6,77.7,F3s

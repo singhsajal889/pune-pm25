@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pune PM2.5 Forecast</title>
+<meta name="description" content="Live PM2.5 at 14 CPCB stations in Pune and Pimpri-Chinchwad, with a 3-day forecast and 1 km maps (CABL research project).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+/* Layout: one column; station explorer (map + card) side by side on wide screens; table and 1 km maps below. */
+:root{
+  --bg:#f5f6f4; --surface:#ffffff; --sunk:#eceeea; --line:#d6dad3; --fg:#1b2420; --muted:#5d6a63; --accent:#1f6f5c;
+  --c-good:#2e9d4f; --c-sat:#7cb342; --c-mod:#d4b400; --c-poor:#ef8a17; --c-vpoor:#d93025; --c-sev:#7f1414;
+  --display:"Space Grotesk",system-ui,sans-serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121614; --surface:#1a201d; --sunk:#0e1210; --line:#2c3531; --fg:#e3e8e5; --muted:#9aa7a0; --accent:#4fc3a1; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121614; --surface:#1a201d; --sunk:#0e1210; --line:#2c3531; --fg:#e3e8e5; --muted:#9aa7a0; --accent:#4fc3a1; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{padding-block:28px 18px;border-bottom:1px solid var(--line)}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.2;text-wrap:balance}
+h1{font-size:clamp(24px,4vw,34px);font-weight:700}
+h2{font-size:20px;font-weight:600;margin-bottom:10px}
+.sub{color:var(--muted);margin:6px 0 0;max-width:70ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pill{font-family:var(--mono);font-size:12px;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:4px 9px}
+.note{margin-top:12px;font-size:13px;background:var(--sunk);border-left:3px solid var(--c-poor);padding:8px 12px;border-radius:4px;max-width:85ch}
+section{padding-block:26px;border-bottom:1px solid var(--line)}
+.explorer{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px}
+@media (max-width:820px){.explorer{grid-template-columns:1fr}}
+#map{height:430px;border-radius:8px;border:1px solid var(--line);background:var(--sunk)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;min-width:0}
+select{font:inherit;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);width:100%}
+.live{display:flex;align-items:baseline;gap:10px;margin-top:14px;flex-wrap:wrap}
+.big{font-family:var(--display);font-size:40px;font-weight:700;font-variant-numeric:tabular-nums}
+.unit{color:var(--muted);font-size:13px}
+.label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.days{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.day{border:1px solid var(--line);border-radius:7px;padding:9px 10px;background:var(--bg)}
+.day .v{font-family:var(--display);font-size:24px;font-weight:600;font-variant-numeric:tabular-nums}
+.badge{display:inline-block;font-size:11.5px;font-weight:600;color:#fff;border-radius:4px;padding:1px 7px;white-space:nowrap}
+.badge.dark-text{color:#1b2420}
+.small{font-size:12.5px;color:var(--muted)}
+svg text{fill:var(--muted);font-family:var(--mono);font-size:10px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:14px}
+th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--sunk)}
+.cell{display:inline-block;min-width:48px;text-align:center;border-radius:4px;padding:1px 6px;color:#fff;font-weight:600}
+.tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.tabs button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;padding:5px 12px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.mapimg{max-width:100%;width:560px;border-radius:8px;border:1px solid var(--line);background:#fff}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+footer{padding-block:24px 40px;font-size:13px;color:var(--muted)}
+footer p{max-width:85ch}
+a{color:var(--accent)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Pune PM2.5: live and 3-day forecast</h1>
+  <p class="sub">Measured PM2.5 at 14 CPCB stations in Pune and Pimpri-Chinchwad, updated hourly, and a forecast of the daily mean for today and the next two days, issued every morning at 08:00 IST.</p>
+  <div class="meta">
+    <span class="pill" id="pIssue">Forecast: loading…</span>
+    <span class="pill" id="pLive">Live data: loading…</span>
+  </div>
+  <div class="note"><b>Experimental research product</b> (CABL project). Not an official air-quality forecast. Live values are provisional CPCB data from data.gov.in and are 24-hour averages, not instantaneous readings.</div>
+  <div class="legend" id="legend"></div>
+</div></header>
+
+<section><div class="wrap">
+  <h2>Stations</h2>
+  <div class="explorer">
+    <div id="map" role="img" aria-label="Map of the 14 stations coloured by today's forecast"></div>
+    <div class="card">
+      <label class="label" for="stSel">Station</label>
+      <select id="stSel"></select>
+      <div class="live">
+        <span class="big" id="liveVal">–</span><span class="unit">µg/m³, 24-h average</span>
+        <span id="liveBadge"></span>
+      </div>
+      <div class="small" id="liveTime">–</div>
+      <div class="label" style="margin-top:16px">Forecast, daily mean</div>
+      <div class="days" id="days"></div>
+      <div class="small" id="method" style="margin-top:8px"></div>
+      <div class="label" style="margin-top:16px">Last 72 h measured and next 3 days forecast</div>
+      <svg id="chart" viewBox="0 0 420 170" width="100%" role="img" aria-label="Recent measurements and forecast"></svg>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>All stations</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Station</th><th>Live now</th><th>Yesterday</th><th id="h1">Today</th><th id="h2">Tomorrow</th><th id="h3">Day after</th></tr></thead>
+    <tbody id="tbody"></tbody>
+  </table></div>
+  <p class="small">Yesterday = the station's measured daily mean of yesterday (the simple forecast "tomorrow is like yesterday"). Click a row to open that station above.</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2>1 km forecast maps</h2>
+  <div class="tabs" id="mapTabs"></div>
+  <img id="mapImg" class="mapimg" alt="1 km PM2.5 forecast map">
+  <p class="small">Each 1 km square is estimated from the weather forecast, CAMS and the measured PM2.5 of nearby stations. Between stations the map is less accurate than the station forecasts (typical error about 13 µg/m³ against about 7 µg/m³ at stations).</p>
+</div></section>
+
+<footer><div class="wrap">
+  <h3 style="font-size:15px;margin-bottom:6px">How the forecast works</h3>
+  <p>A LightGBM model starts from each station's measured PM2.5 of the last two days and predicts how much it will change, using the ECMWF IFS 9 km weather forecast (boundary-layer height, rain, humidity, temperature, wind), the CAMS aerosol forecast, the place and the season. Tested on January–August 2026 at 14 stations, its typical error was 6.6 / 8.5 / 9.6 µg/m³ for today / tomorrow / the day after, against 7.5 / 10.6 / 12.9 for "same as yesterday".</p>
+  <p>Data: CPCB CAAQMS (via data.gov.in), ECMWF IFS HRES (via Open-Meteo), Copernicus CAMS. Colours follow the CPCB PM2.5 sub-index classes (24-h mean, µg/m³): Good 0–30, Satisfactory 31–60, Moderate 61–90, Poor 91–120, Very poor 121–250, Severe above 250.</p>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const CLS=[[30,'Good','--c-good'],[60,'Satisfactory','--c-sat'],[90,'Moderate','--c-mod'],[120,'Poor','--c-poor'],[250,'Very poor','--c-vpoor'],[1e9,'Severe','--c-sev']];
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const cls=v=>CLS.find(c=>v<=c[0]);
+function badge(v){ if(v==null||isNaN(v)) return '<span class="small">no data</span>'; const c=cls(v); const dark=(c[2]==='--c-mod'); return `<span class="badge${dark?' dark-text':''}" style="background:var(${c[2]})">${c[1]}</span>`; }
+function chip(v){ if(v==null||isNaN(v)) return '<span class="small">–</span>'; const c=cls(v); return `<span class="cell" style="background:var(${c[2]});${c[2]==='--c-mod'?'color:#1b2420':''}">${Math.round(v)}</span>`; }
+const fmtDay=s=>new Date(s+'T00:00:00').toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});
+document.getElementById('legend').innerHTML=CLS.map((c,i)=>`<span class="badge${c[2]==='--c-mod'?' dark-text':''}" style="background:var(${c[2]})">${c[1]} ${i? CLS[i-1][0]+1:0}${i<5?'–'+c[0]:'+'}</span>`).join('');
+
+let FC=null, RT=null, map=null, markers={};
+async function getJSON(u){ try{ const r=await fetch(u+'?t='+Date.now()); return r.ok? await r.json(): null; }catch(e){ return null; } }
+
+function render(){
+  const st=(FC?.stations||[]).map(s=>s.name);
+  (RT?.stations||[]).forEach(s=>{ if(!st.includes(s.name)) st.push(s.name); });
+  st.sort();
+  const sel=document.getElementById('stSel');
+  sel.innerHTML=st.map(n=>`<option>${n}</option>`).join('');
+  if(FC){ document.getElementById('pIssue').textContent=`Forecast issued ${fmtDay(FC.issue_date)}, 08:00 IST`;
+    ['h1','h2','h3'].forEach((h,i)=>document.getElementById(h).textContent=fmtDay(FC.lead_dates[i])); }
+  else document.getElementById('pIssue').textContent='Forecast: not available';
+  document.getElementById('pLive').textContent= RT? `Live data updated ${RT.updated_ist} IST` : 'Live data: not available';
+  // table
+  document.getElementById('tbody').innerHTML=st.map(n=>{
+    const f=FC?.stations.find(s=>s.name===n), r=RT?.stations.find(s=>s.name===n);
+    return `<tr data-st="${n}"><td>${n}</td><td>${chip(r?.value)}</td><td>${chip(f?.persistence)}</td>${[0,1,2].map(i=>`<td>${chip(f?.forecast?.[i])}</td>`).join('')}</tr>`;}).join('');
+  document.querySelectorAll('#tbody tr').forEach(tr=>tr.onclick=()=>{ sel.value=tr.dataset.st; show(tr.dataset.st); window.scrollTo({top:0,behavior:'smooth'}); });
+  // map
+  if(window.L && !map){
+    map=L.map('map',{scrollWheelZoom:false}).setView([18.56,73.86],11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:16,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+  }
+  if(map){
+    st.forEach(n=>{
+      const f=FC?.stations.find(s=>s.name===n), r=RT?.stations.find(s=>s.name===n), p=f||r; if(!p||isNaN(p.lat)) return;
+      const v=f?.forecast?.[0] ?? r?.value; const col=v!=null? css(cls(v)[2]) : '#888';
+      const m=L.circleMarker([p.lat,p.lon],{radius:9,color:'#222',weight:1,fillColor:col,fillOpacity:.95}).addTo(map);
+      m.bindTooltip(`${n}: ${v!=null?Math.round(v):'–'} µg/m³`); m.on('click',()=>{ sel.value=n; show(n); }); markers[n]=m;
+    });
+  }
+  sel.onchange=()=>show(sel.value);
+  // 1 km maps
+  if(FC){ const tabs=document.getElementById('mapTabs');
+    tabs.innerHTML=FC.lead_dates.map((d,i)=>`<button type="button" aria-pressed="${i===0}" data-i="${i}">${['Today','Tomorrow','Day after'][i]} · ${fmtDay(d)}</button>`).join('');
+    const img=document.getElementById('mapImg'); img.src=FC.maps[0]+'?t='+Date.now();
+    tabs.querySelectorAll('button').forEach(b=>b.onclick=()=>{ tabs.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); img.src=FC.maps[+b.dataset.i]+'?t='+Date.now(); });
+  }
+  if(st.length) show(st.includes('Revenue Colony-Shivajinagar')?'Revenue Colony-Shivajinagar':st[0]);
+}
+
+function show(n){
+  document.getElementById('stSel').value=n;
+  const f=FC?.stations.find(s=>s.name===n), r=RT?.stations.find(s=>s.name===n);
+  document.getElementById('liveVal').textContent= r? Math.round(r.value) : '–';
+  document.getElementById('liveBadge').innerHTML= r? badge(r.value) : '';
+  document.getElementById('liveTime').textContent= r? `24-h average up to ${r.time} IST (range over that period ${r.min ?? '–'}–${r.max ?? '–'})` : 'No live reading';
+  document.getElementById('days').innerHTML=[0,1,2].map(i=>{ const v=f?.forecast?.[i]; return `<div class="day"><div class="label">${FC? fmtDay(FC.lead_dates[i]) : ['Today','Tomorrow','Day after'][i]}</div><div class="v">${v!=null?Math.round(v):'–'}</div>${badge(v)}</div>`; }).join('');
+  const meth=f? [...new Set(f.method)] : [];
+  const notes={'F3s':'model forecast','persistence (no D-2)':"today = yesterday's value (the day before yesterday was not measured)",'F3s (D-1 filled from D-2)':"yesterday's value missing: estimated from the day before",'F3s level (no D-1)':"no recent measurement: model without the station's own history (less accurate)"};
+  document.getElementById('method').textContent= f? 'Method: '+meth.map(m=>notes[m]||m).join('; ') + (f.persistence!=null? ` · Yesterday measured ${Math.round(f.persistence)} µg/m³ (${f.yesterday_source})`:'') : 'No forecast for this station.';
+  chart(r,f);
+  Object.entries(markers).forEach(([k,m])=>m.setStyle({weight:k===n?3:1,color:k===n?css('--fg'):'#222'}));
+}
+
+function chart(r,f){
+  const svg=document.getElementById('chart'); const W=420,H=170,ml=34,mr=8,mt=10,mb=24;
+  const pts=(r?.series||[]).map(([t,v])=>({t:new Date(t.replace(' ','T')),v}));
+  const fc=(f&&FC)? FC.lead_dates.map((d,i)=>({t:new Date(d+'T12:00:00'),v:f.forecast[i]})).filter(p=>p.v!=null) : [];
+  const all=[...pts,...fc]; if(!all.length){ svg.innerHTML='<text x="10" y="80">No data yet</text>'; return; }
+  const t0=Math.min(...all.map(p=>+p.t)), t1=Math.max(...all.map(p=>+p.t))+3.6e6;
+  const vmax=Math.max(60,...all.map(p=>p.v))*1.1;
+  const X=t=>ml+(t-t0)/(t1-t0)*(W-ml-mr), Y=v=>mt+(1-v/vmax)*(H-mt-mb);
+  let s='';
+  for(let g=0; g<=vmax; g+= vmax>200?100:50){ s+=`<line x1="${ml}" x2="${W-mr}" y1="${Y(g)}" y2="${Y(g)}" stroke="var(--line)" stroke-width="1"/><text x="${ml-4}" y="${Y(g)+3}" text-anchor="end">${g}</text>`; }
+  [60,90,120].forEach(b=>{ if(b<vmax) s+=`<line x1="${ml}" x2="${W-mr}" y1="${Y(b)}" y2="${Y(b)}" stroke="var(${cls(b)[2]})" stroke-dasharray="3 3" stroke-width="1"/>`; });
+  if(pts.length){ s+=`<polyline fill="none" stroke="var(--fg)" stroke-width="1.8" points="${pts.map(p=>X(+p.t)+','+Y(p.v)).join(' ')}"/>`; pts.forEach(p=>s+=`<circle cx="${X(+p.t)}" cy="${Y(p.v)}" r="2.2" fill="var(--fg)"/>`); }
+  fc.forEach(p=>{ s+=`<rect x="${X(+p.t)-9}" y="${Y(p.v)}" width="18" height="${Y(0)-Y(p.v)}" fill="var(${cls(p.v)[2]})" opacity=".85"/>`; });
+  const days=[...new Set(all.map(p=>p.t.toDateString()))];
+  days.forEach(d=>{ const t=new Date(d); t.setHours(12); if(+t>=t0&&+t<=t1) s+=`<text x="${X(+t)}" y="${H-8}" text-anchor="middle">${t.toLocaleDateString('en-IN',{day:'numeric',month:'short'})}</text>`; });
+  s+=`<text x="${W-mr}" y="${mt+8}" text-anchor="end">line: measured · bars: forecast</text>`;
+  svg.innerHTML=s;
+}
+
+(async()=>{ [FC,RT]=await Promise.all([getJSON('data/forecast.json'),getJSON('data/realtime.json')]); render(); })();
+</script>
+</body>
+</html>
