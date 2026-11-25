@@ -1,12 +1,12 @@
 {
- "issue_date": "2026-11-24",
- "issued_ist": "2026-11-24 07:45",
+ "issue_date": "2026-11-25",
+ "issued_ist": "2026-11-25 07:45",
  "cams": "CAMS 12 UTC run of D-1",
- "weather_run_utc": "2026-11-23 12:00:00",
+ "weather_run_utc": "2026-11-24 12:00:00",
  "lead_dates": [
-  "2026-11-24",
   "2026-11-25",
-  "2026-11-26"
+  "2026-11-26",
+  "2026-11-27"
  ],
  "maps": [
   "maps/map_D.png",
@@ -19,16 +19,16 @@
    "lat": 18.640051,
    "lon": 73.848956,
    "forecast": [
-    91.7,
-    80.3,
-    81.7
+    85.3,
+    75.9,
+    83.9
    ],
    "method": [
     "F3s",
     "F3s",
     "F3s"
    ],
-   "persistence": 101.3,
+   "persistence": 96.9,
    "yesterday_source": "live feed (QC: accepted)"
   },
   {
@@ -36,16 +36,16 @@
    "lat": 18.60577,
    "lon": 73.749976,
    "forecast": [
-    96.0,
-    88.7,
-    91.4
+    89.2,
+    81.0,
+    88.6
    ],
    "method": [
     "F3s",
     "F3s",
     "F3s"
    ],
-   "persistence": 100.7,
+   "persistence": 98.0,
    "yesterday_source": "live feed (QC: accepted)"
   },
   {
@@ -53,16 +53,16 @@
    "lat": 18.459883,
    "lon": 73.852193,
    "forecast": [
-    79.0,
-    75.3,
-    72.5
+    79.6,
+    70.3,
+    74.4
    ],
    "method": [
     "F3s",
     "F3s",
     "F3s"
    ],
-   "persistence": 80.9,
+   "persistence": 83.8,
    "yesterday_source": "live feed (QC: accepted)"
   },
   {
@@ -70,9 +70,162 @@
    "lat": 18.63673,
    "lon": 73.82487,
    "forecast": [
-    88.4,
-    79.2,
-    80.8
+    74.5,
+    68.0,
+    74.9
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 82.7,
+   "yesterday_source": "live feed (QC: accepted)"
+  },
+  {
+   "name": "Hadapsar",
+   "lat": 18.501793,
+   "lon": 73.927532,
+   "forecast": [
+    77.3,
+    71.5,
+    75.8
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 83.0,
+   "yesterday_source": "live feed (QC: accepted)"
+  },
+  {
+   "name": "Katraj Dairy",
+   "lat": 18.45445,
+   "lon": 73.854155,
+   "forecast": [
+    41.7,
+    38.1,
+    40.6
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 42.2,
+   "yesterday_source": "live feed (QC: accepted)"
+  },
+  {
+   "name": "Mhada Colony",
+   "lat": 18.57304,
+   "lon": 73.927715,
+   "forecast": [
+    70.6,
+    65.9,
+    68.7
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 75.9,
+   "yesterday_source": "live feed (QC: accepted)"
+  },
+  {
+   "name": "Panchawati Pashan",
+   "lat": 18.536457,
+   "lon": 73.805454,
+   "forecast": [
+    76.5,
+    68.5,
+    74.9
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 85.0,
+   "yesterday_source": "live feed (QC: accepted)"
+  },
+  {
+   "name": "Park Street Wakad",
+   "lat": 18.59051,
+   "lon": 73.77946,
+   "forecast": [
+    62.3,
+    58.2,
+    65.1
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 65.4,
+   "yesterday_source": "live feed (QC: accepted)"
+  },
+  {
+   "name": "Revenue Colony-Shivajinagar",
+   "lat": 18.530085,
+   "lon": 73.849598,
+   "forecast": [
+    88.7,
+    81.2,
+    87.1
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 94.8,
+   "yesterday_source": "live feed (QC: accepted)"
+  },
+  {
+   "name": "Savitribai Phule Pune University",
+   "lat": 18.547056,
+   "lon": 73.826908,
+   "forecast": [
+    59.9,
+    53.9,
+    59.8
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 65.1,
+   "yesterday_source": "live feed (QC: accepted)"
+  },
+  {
+   "name": "Savta Mali Nagar",
+   "lat": 18.614767,
+   "lon": 73.799516,
+   "forecast": [
+    70.8,
+    66.5,
+    74.0
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 75.4,
+   "yesterday_source": "live feed (QC: accepted)"
+  },
+  {
+   "name": "Thergaon",
+   "lat": 18.616318,
+   "lon": 73.765797,
+   "forecast": [
+    86.4,
+    78.2,
+    86.1
    ],
    "method": [
     "F3s",
@@ -83,173 +236,20 @@
    "yesterday_source": "live feed (QC: accepted)"
   },
   {
-   "name": "Hadapsar",
-   "lat": 18.501793,
-   "lon": 73.927532,
-   "forecast": [
-    78.9,
-    75.7,
-    69.8
-   ],
-   "method": [
-    "persistence (no D-2)",
-    "F3s",
-    "F3s"
-   ],
-   "persistence": 78.9,
-   "yesterday_source": "live feed (QC: accepted)"
-  },
-  {
-   "name": "Katraj Dairy",
-   "lat": 18.45445,
-   "lon": 73.854155,
-   "forecast": [
-    34.8,
-    34.7,
-    35.5
-   ],
-   "method": [
-    "F3s",
-    "F3s",
-    "F3s"
-   ],
-   "persistence": 35.1,
-   "yesterday_source": "live feed (QC: accepted)"
-  },
-  {
-   "name": "Mhada Colony",
-   "lat": 18.57304,
-   "lon": 73.927715,
-   "forecast": [
-    88.9,
-    82.8,
-    81.1
-   ],
-   "method": [
-    "F3s",
-    "F3s",
-    "F3s"
-   ],
-   "persistence": 93.3,
-   "yesterday_source": "live feed (QC: accepted)"
-  },
-  {
-   "name": "Panchawati Pashan",
-   "lat": 18.536457,
-   "lon": 73.805454,
-   "forecast": [
-    71.2,
-    67.1,
-    67.3
-   ],
-   "method": [
-    "F3s",
-    "F3s",
-    "F3s"
-   ],
-   "persistence": 77.1,
-   "yesterday_source": "live feed (QC: accepted)"
-  },
-  {
-   "name": "Park Street Wakad",
-   "lat": 18.59051,
-   "lon": 73.77946,
-   "forecast": [
-    58.5,
-    56.6,
-    58.4
-   ],
-   "method": [
-    "F3s",
-    "F3s",
-    "F3s"
-   ],
-   "persistence": 59.4,
-   "yesterday_source": "live feed (QC: accepted)"
-  },
-  {
-   "name": "Revenue Colony-Shivajinagar",
-   "lat": 18.530085,
-   "lon": 73.849598,
-   "forecast": [
-    89.4,
-    86.5,
-    85.4
-   ],
-   "method": [
-    "F3s",
-    "F3s",
-    "F3s"
-   ],
-   "persistence": 91.9,
-   "yesterday_source": "live feed (QC: accepted)"
-  },
-  {
-   "name": "Savitribai Phule Pune University",
-   "lat": 18.547056,
-   "lon": 73.826908,
-   "forecast": [
-    57.5,
-    53.2,
-    54.9
-   ],
-   "method": [
-    "F3s",
-    "F3s",
-    "F3s"
-   ],
-   "persistence": 60.0,
-   "yesterday_source": "live feed (QC: accepted)"
-  },
-  {
-   "name": "Savta Mali Nagar",
-   "lat": 18.614767,
-   "lon": 73.799516,
-   "forecast": [
-    84.9,
-    79.4,
-    82.2
-   ],
-   "method": [
-    "F3s",
-    "F3s",
-    "F3s"
-   ],
-   "persistence": 88.8,
-   "yesterday_source": "live feed (QC: accepted)"
-  },
-  {
-   "name": "Thergaon",
-   "lat": 18.616318,
-   "lon": 73.765797,
-   "forecast": [
-    77.3,
-    72.7,
-    74.5
-   ],
-   "method": [
-    "F3s",
-    "F3s",
-    "F3s"
-   ],
-   "persistence": 80.9,
-   "yesterday_source": "live feed (QC: accepted)"
-  },
-  {
    "name": "Transport Nagar-Nigdi",
    "lat": 18.664282,
    "lon": 73.763966,
    "forecast": [
-    69.0,
-    64.1,
-    66.3
+    62.0,
+    57.3,
+    65.0
    ],
    "method": [
     "F3s",
     "F3s",
     "F3s"
    ],
-   "persistence": 74.8,
+   "persistence": 68.0,
    "yesterday_source": "live feed (QC: accepted)"
   }
  ],
