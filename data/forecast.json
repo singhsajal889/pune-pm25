@@ -1,12 +1,12 @@
 {
- "issue_date": "2026-11-26",
- "issued_ist": "2026-11-26 07:45",
+ "issue_date": "2026-11-27",
+ "issued_ist": "2026-11-27 07:45",
  "cams": "CAMS 12 UTC run of D-1",
- "weather_run_utc": "2026-11-25 12:00:00",
+ "weather_run_utc": "2026-11-26 12:00:00",
  "lead_dates": [
-  "2026-11-26",
   "2026-11-27",
-  "2026-11-28"
+  "2026-11-28",
+  "2026-11-29"
  ],
  "maps": [
   "maps/map_D.png",
@@ -19,16 +19,16 @@
    "lat": 18.640051,
    "lon": 73.848956,
    "forecast": [
-    88.8,
-    79.8,
-    86.1
+    80.0,
+    81.6,
+    89.3
    ],
    "method": [
     "F3s",
     "F3s",
     "F3s"
    ],
-   "persistence": 96.0,
+   "persistence": 83.6,
    "yesterday_source": "live feed (QC: accepted)"
   },
   {
@@ -36,16 +36,16 @@
    "lat": 18.60577,
    "lon": 73.749976,
    "forecast": [
-    90.2,
-    82.8,
-    92.0
+    77.9,
+    85.1,
+    83.8
    ],
    "method": [
     "F3s",
     "F3s",
     "F3s"
    ],
-   "persistence": 95.7,
+   "persistence": 79.7,
    "yesterday_source": "live feed (QC: accepted)"
   },
   {
@@ -53,9 +53,77 @@
    "lat": 18.459883,
    "lon": 73.852193,
    "forecast": [
-    69.1,
-    66.3,
-    71.5
+    71.3,
+    72.3,
+    76.7
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 73.0,
+   "yesterday_source": "live feed (QC: accepted)"
+  },
+  {
+   "name": "Gavalinagar",
+   "lat": 18.63673,
+   "lon": 73.82487,
+   "forecast": [
+    54.2,
+    58.5,
+    64.2
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 53.5,
+   "yesterday_source": "live feed (QC: accepted)"
+  },
+  {
+   "name": "Hadapsar",
+   "lat": 18.501793,
+   "lon": 73.927532,
+   "forecast": [
+    63.4,
+    67.2,
+    75.5
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 63.6,
+   "yesterday_source": "live feed (QC: accepted)"
+  },
+  {
+   "name": "Katraj Dairy",
+   "lat": 18.45445,
+   "lon": 73.854155,
+   "forecast": [
+    32.1,
+    33.2,
+    36.5
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 31.6,
+   "yesterday_source": "live feed (QC: accepted)"
+  },
+  {
+   "name": "Mhada Colony",
+   "lat": 18.57304,
+   "lon": 73.927715,
+   "forecast": [
+    71.7,
+    73.9,
+    84.8
    ],
    "method": [
     "F3s",
@@ -66,88 +134,20 @@
    "yesterday_source": "live feed (QC: accepted)"
   },
   {
-   "name": "Gavalinagar",
-   "lat": 18.63673,
-   "lon": 73.82487,
-   "forecast": [
-    78.6,
-    73.1,
-    77.9
-   ],
-   "method": [
-    "F3s",
-    "F3s",
-    "F3s"
-   ],
-   "persistence": 83.0,
-   "yesterday_source": "live feed (QC: accepted)"
-  },
-  {
-   "name": "Hadapsar",
-   "lat": 18.501793,
-   "lon": 73.927532,
-   "forecast": [
-    65.1,
-    64.9,
-    69.8
-   ],
-   "method": [
-    "F3s",
-    "F3s",
-    "F3s"
-   ],
-   "persistence": 69.2,
-   "yesterday_source": "live feed (QC: accepted)"
-  },
-  {
-   "name": "Katraj Dairy",
-   "lat": 18.45445,
-   "lon": 73.854155,
-   "forecast": [
-    44.5,
-    42.6,
-    47.7
-   ],
-   "method": [
-    "F3s",
-    "F3s",
-    "F3s"
-   ],
-   "persistence": 45.8,
-   "yesterday_source": "live feed (QC: accepted)"
-  },
-  {
-   "name": "Mhada Colony",
-   "lat": 18.57304,
-   "lon": 73.927715,
-   "forecast": [
-    72.4,
-    68.1,
-    74.4
-   ],
-   "method": [
-    "F3s",
-    "F3s",
-    "F3s"
-   ],
-   "persistence": 76.5,
-   "yesterday_source": "live feed (QC: accepted)"
-  },
-  {
    "name": "Panchawati Pashan",
    "lat": 18.536457,
    "lon": 73.805454,
    "forecast": [
-    71.2,
-    65.9,
-    71.4
+    59.5,
+    60.2,
+    60.8
    ],
    "method": [
     "F3s",
     "F3s",
     "F3s"
    ],
-   "persistence": 76.8,
+   "persistence": 61.9,
    "yesterday_source": "live feed (QC: accepted)"
   },
   {
@@ -155,16 +155,16 @@
    "lat": 18.59051,
    "lon": 73.77946,
    "forecast": [
-    65.3,
-    61.9,
-    69.7
+    41.0,
+    46.7,
+    49.3
    ],
    "method": [
     "F3s",
     "F3s",
     "F3s"
    ],
-   "persistence": 67.7,
+   "persistence": 39.3,
    "yesterday_source": "live feed (QC: accepted)"
   },
   {
@@ -172,16 +172,16 @@
    "lat": 18.530085,
    "lon": 73.849598,
    "forecast": [
-    83.7,
-    77.7,
-    86.7
+    67.0,
+    71.7,
+    80.0
    ],
    "method": [
     "F3s",
     "F3s",
     "F3s"
    ],
-   "persistence": 88.5,
+   "persistence": 68.0,
    "yesterday_source": "live feed (QC: accepted)"
   },
   {
@@ -189,16 +189,16 @@
    "lat": 18.547056,
    "lon": 73.826908,
    "forecast": [
-    61.7,
-    55.5,
-    62.2
+    48.5,
+    49.5,
+    55.4
    ],
    "method": [
     "F3s",
     "F3s",
     "F3s"
    ],
-   "persistence": 65.7,
+   "persistence": 49.3,
    "yesterday_source": "live feed (QC: accepted)"
   },
   {
@@ -206,16 +206,16 @@
    "lat": 18.614767,
    "lon": 73.799516,
    "forecast": [
-    84.0,
-    79.6,
-    87.2
+    73.7,
+    79.1,
+    83.8
    ],
    "method": [
     "F3s",
     "F3s",
     "F3s"
    ],
-   "persistence": 87.4,
+   "persistence": 74.5,
    "yesterday_source": "live feed (QC: accepted)"
   },
   {
@@ -223,16 +223,16 @@
    "lat": 18.616318,
    "lon": 73.765797,
    "forecast": [
-    69.5,
-    64.9,
-    71.9
+    53.4,
+    60.3,
+    60.1
    ],
    "method": [
     "F3s",
     "F3s",
     "F3s"
    ],
-   "persistence": 72.4,
+   "persistence": 51.7,
    "yesterday_source": "live feed (QC: accepted)"
   },
   {
@@ -240,16 +240,16 @@
    "lat": 18.664282,
    "lon": 73.763966,
    "forecast": [
-    63.2,
-    59.2,
-    64.5
+    60.2,
+    63.9,
+    65.6
    ],
    "method": [
     "F3s",
     "F3s",
     "F3s"
    ],
-   "persistence": 66.3,
+   "persistence": 61.9,
    "yesterday_source": "live feed (QC: accepted)"
   }
  ],
