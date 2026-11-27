@@ -1,0 +1,258 @@
+{
+ "pollutant": "PM10",
+ "issue_date": "2026-11-27",
+ "issued_ist": "2026-11-27 12:54",
+ "cams": "CAMS 12 UTC run of D-1",
+ "weather_run_utc": "2026-11-26 12:00:00",
+ "lead_dates": [
+  "2026-11-27",
+  "2026-11-28",
+  "2026-11-29"
+ ],
+ "maps": [
+  "maps/pm10_map_D.png",
+  "maps/pm10_map_D1.png",
+  "maps/pm10_map_D2.png"
+ ],
+ "stations": [
+  {
+   "name": "Bhosari",
+   "lat": 18.640051,
+   "lon": 73.848956,
+   "forecast": [
+    181.5,
+    180.6,
+    171.1
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 204.8,
+   "yesterday_source": "live feed (converted, QC)"
+  },
+  {
+   "name": "Bhumkar Nagar",
+   "lat": 18.60577,
+   "lon": 73.749976,
+   "forecast": [
+    202.2,
+    201.8,
+    179.6
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 230.4,
+   "yesterday_source": "live feed (converted, QC)"
+  },
+  {
+   "name": "Dhankawadi",
+   "lat": 18.459883,
+   "lon": 73.852193,
+   "forecast": [
+    162.0,
+    158.8,
+    150.8
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 180.8,
+   "yesterday_source": "live feed (converted, QC)"
+  },
+  {
+   "name": "Gavalinagar",
+   "lat": 18.63673,
+   "lon": 73.82487,
+   "forecast": [
+    132.3,
+    138.7,
+    141.3
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 135.6,
+   "yesterday_source": "live feed (converted, QC)"
+  },
+  {
+   "name": "Hadapsar",
+   "lat": 18.501793,
+   "lon": 73.927532,
+   "forecast": [
+    164.5,
+    165.6,
+    163.1
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 173.2,
+   "yesterday_source": "live feed (converted, QC)"
+  },
+  {
+   "name": "Katraj Dairy",
+   "lat": 18.45445,
+   "lon": 73.854155,
+   "forecast": [
+    101.7,
+    104.6,
+    105.5
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 99.0,
+   "yesterday_source": "live feed (converted, QC)"
+  },
+  {
+   "name": "Mhada Colony",
+   "lat": 18.57304,
+   "lon": 73.927715,
+   "forecast": [
+    185.1,
+    181.9,
+    173.4
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 203.3,
+   "yesterday_source": "live feed (converted, QC)"
+  },
+  {
+   "name": "Panchawati Pashan",
+   "lat": 18.536457,
+   "lon": 73.805454,
+   "forecast": [
+    116.9,
+    118.5,
+    109.5
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 119.1,
+   "yesterday_source": "live feed (converted, QC)"
+  },
+  {
+   "name": "Park Street Wakad",
+   "lat": 18.59051,
+   "lon": 73.77946,
+   "forecast": [
+    101.4,
+    112.8,
+    109.4
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 99.0,
+   "yesterday_source": "live feed (converted, QC)"
+  },
+  {
+   "name": "Revenue Colony-Shivajinagar",
+   "lat": 18.530085,
+   "lon": 73.849598,
+   "forecast": [
+    127.8,
+    136.5,
+    139.4
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 128.1,
+   "yesterday_source": "live feed (converted, QC)"
+  },
+  {
+   "name": "Savitribai Phule Pune University",
+   "lat": 18.547056,
+   "lon": 73.826908,
+   "forecast": [
+    127.0,
+    129.9,
+    132.9
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 129.6,
+   "yesterday_source": "live feed (converted, QC)"
+  },
+  {
+   "name": "Savta Mali Nagar",
+   "lat": 18.614767,
+   "lon": 73.799516,
+   "forecast": [
+    154.4,
+    161.7,
+    156.3
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 159.7,
+   "yesterday_source": "live feed (converted, QC)"
+  },
+  {
+   "name": "Thergaon",
+   "lat": 18.616318,
+   "lon": 73.765797,
+   "forecast": [
+    120.1,
+    130.6,
+    124.7
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 122.1,
+   "yesterday_source": "live feed (converted, QC)"
+  },
+  {
+   "name": "Transport Nagar-Nigdi",
+   "lat": 18.664282,
+   "lon": 73.763966,
+   "forecast": [
+    147.3,
+    155.1,
+    151.7
+   ],
+   "method": [
+    "F3s",
+    "F3s",
+    "F3s"
+   ],
+   "persistence": 155.2,
+   "yesterday_source": "live feed (converted, QC)"
+  }
+ ],
+ "flags": []
+}

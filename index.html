@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pune PM2.5 Forecast</title>
-<meta name="description" content="Live PM2.5 at 14 CPCB stations in Pune and Pimpri-Chinchwad, with a 3-day forecast and 1 km maps (CABL research project).">
+<title>Pune PM2.5 and PM10 Forecast</title>
+<meta name="description" content="Live PM2.5 and PM10 at 14 CPCB stations in Pune and Pimpri-Chinchwad, with a 3-day forecast and 1 km maps (CABL research project).">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
@@ -66,8 +66,9 @@ a{color:var(--accent)}
 </head>
 <body>
 <header><div class="wrap">
-  <h1>Pune PM2.5: live and 3-day forecast</h1>
-  <p class="sub">Measured PM2.5 at 14 CPCB stations in Pune and Pimpri-Chinchwad, updated hourly, and a forecast of the daily mean for today and the next two days, issued every morning at 08:00 IST.</p>
+  <h1>Pune PM2.5 and PM10: live and 3-day forecast</h1>
+  <p class="sub">Measured PM2.5 and PM10 at 14 CPCB stations in Pune and Pimpri-Chinchwad, updated hourly, and a forecast of the daily mean for today and the next two days, issued every morning at 08:00 IST.</p>
+  <div class="tabs" id="polTabs" role="group" aria-label="Pollutant" style="margin-top:14px;margin-bottom:0"><button type="button" aria-pressed="true" data-p="PM25">PM2.5</button><button type="button" aria-pressed="false" data-p="PM10">PM10</button></div>
   <div class="meta">
     <span class="pill" id="pIssue">Forecast: loading…</span>
     <span class="pill" id="pLive">Live data: loading…</span>
@@ -109,25 +110,33 @@ a{color:var(--accent)}
 <section><div class="wrap">
   <h2>1 km forecast maps</h2>
   <div class="tabs" id="mapTabs"></div>
-  <img id="mapImg" class="mapimg" alt="1 km PM2.5 forecast map">
-  <p class="small">Each 1 km square is estimated from the weather forecast, CAMS and the measured PM2.5 of nearby stations. Between stations the map is less accurate than the station forecasts (typical error about 13 µg/m³ against about 7 µg/m³ at stations).</p>
+  <img id="mapImg" class="mapimg" alt="1 km forecast map">
+  <p class="small" id="mapNote">Each 1 km square is estimated from the weather forecast, CAMS and the measured PM2.5 of nearby stations. Between stations the map is less accurate than the station forecasts (typical error about 13 µg/m³ against about 7 µg/m³ at stations).</p>
 </div></section>
 
 <footer><div class="wrap">
   <h3 style="font-size:15px;margin-bottom:6px">How the forecast works</h3>
   <p>A LightGBM model starts from each station's measured PM2.5 of the last two days and predicts how much it will change, using the ECMWF IFS 9 km weather forecast (boundary-layer height, rain, humidity, temperature, wind), the CAMS aerosol forecast, the place and the season. Tested on January–August 2026 at 14 stations, its typical error was 6.6 / 8.5 / 9.6 µg/m³ for today / tomorrow / the day after, against 7.5 / 10.6 / 12.9 for "same as yesterday".</p>
-  <p>Data: CPCB CAAQMS (via data.gov.in), ECMWF IFS HRES (via Open-Meteo), Copernicus CAMS. Colours follow the CPCB PM2.5 sub-index classes (24-h mean, µg/m³): Good 0–30, Satisfactory 31–60, Moderate 61–90, Poor 91–120, Very poor 121–250, Severe above 250.</p>
+  <p><b>PM10</b> (added 27 Nov 2026): the same method with PM10 as the target. Tested on January–August 2026, typical error 15.0 / 18.2 / 20.1 µg/m³ against 17.2 / 23.4 / 27.3 for "same as yesterday". In November 2026 (PM10 mostly 150–200 µg/m³) it was only about as good as "same as yesterday" (30 / 38 / 46 µg/m³) and too low by 7 / 17 / 28 µg/m³ for today / tomorrow / the day after; treat PM10 days 2–3 as indicative.</p>
+  <p>Data: CPCB CAAQMS (via data.gov.in), ECMWF IFS HRES (via Open-Meteo), Copernicus CAMS. Colours follow the CPCB PM2.5 sub-index classes (24-h mean, µg/m³): Good 0–30, Satisfactory 31–60, Moderate 61–90, Poor 91–120, Very poor 121–250, Severe above 250. PM10 colours follow the CPCB PM10 classes: Good 0–50, Satisfactory 51–100, Moderate 101–250, Poor 251–350, Very poor 351–430, Severe above 430.</p>
 </div></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-const CLS=[[30,'Good','--c-good'],[60,'Satisfactory','--c-sat'],[90,'Moderate','--c-mod'],[120,'Poor','--c-poor'],[250,'Very poor','--c-vpoor'],[1e9,'Severe','--c-sev']];
+const POLS={
+  PM25:{name:'PM2.5',fc:'data/forecast.json',rt:'data/realtime.json',lines:[60,90,120],ymin:60,
+        cls:[[30,'Good','--c-good'],[60,'Satisfactory','--c-sat'],[90,'Moderate','--c-mod'],[120,'Poor','--c-poor'],[250,'Very poor','--c-vpoor'],[1e9,'Severe','--c-sev']],
+        note:'Each 1 km square is estimated from the weather forecast, CAMS and the measured PM2.5 of nearby stations. Between stations the map is less accurate than the station forecasts (typical error about 13 µg/m³ against about 7 µg/m³ at stations).'},
+  PM10:{name:'PM10',fc:'data/forecast_pm10.json',rt:'data/realtime_pm10.json',lines:[100,250,350],ymin:100,
+        cls:[[50,'Good','--c-good'],[100,'Satisfactory','--c-sat'],[250,'Moderate','--c-mod'],[350,'Poor','--c-poor'],[430,'Very poor','--c-vpoor'],[1e9,'Severe','--c-sev']],
+        note:'Each 1 km square is estimated from the weather forecast, CAMS and the measured PM10 of nearby stations. Between stations the map is less accurate than the station forecasts (tested Jan–Aug 2026: about 24 µg/m³ against about 15 µg/m³ at stations).'}};
+let POL='PM25', CLS=POLS.PM25.cls;
 const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const cls=v=>CLS.find(c=>v<=c[0]);
 function badge(v){ if(v==null||isNaN(v)) return '<span class="small">no data</span>'; const c=cls(v); const dark=(c[2]==='--c-mod'); return `<span class="badge${dark?' dark-text':''}" style="background:var(${c[2]})">${c[1]}</span>`; }
 function chip(v){ if(v==null||isNaN(v)) return '<span class="small">–</span>'; const c=cls(v); return `<span class="cell" style="background:var(${c[2]});${c[2]==='--c-mod'?'color:#1b2420':''}">${Math.round(v)}</span>`; }
 const fmtDay=s=>new Date(s+'T00:00:00').toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});
-document.getElementById('legend').innerHTML=CLS.map((c,i)=>`<span class="badge${c[2]==='--c-mod'?' dark-text':''}" style="background:var(${c[2]})">${c[1]} ${i? CLS[i-1][0]+1:0}${i<5?'–'+c[0]:'+'}</span>`).join('');
+function setLegend(){ document.getElementById('legend').innerHTML=`<span class="small" style="align-self:center">${POLS[POL].name}, µg/m³:</span>`+CLS.map((c,i)=>`<span class="badge${c[2]==='--c-mod'?' dark-text':''}" style="background:var(${c[2]})">${c[1]} ${i? CLS[i-1][0]+1:0}${i<5?'–'+c[0]:'+'}</span>`).join(''); }
 
 let FC=null, RT=null, map=null, markers={};
 async function getJSON(u){ try{ const r=await fetch(u+'?t='+Date.now()); return r.ok? await r.json(): null; }catch(e){ return null; } }
@@ -153,24 +162,29 @@ function render(){
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:16,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
   }
   if(map){
+    Object.values(markers).forEach(m=>m.remove()); markers={};
     st.forEach(n=>{
       const f=FC?.stations.find(s=>s.name===n), r=RT?.stations.find(s=>s.name===n), p=f||r; if(!p||isNaN(p.lat)) return;
       const v=f?.forecast?.[0] ?? r?.value; const col=v!=null? css(cls(v)[2]) : '#888';
       const m=L.circleMarker([p.lat,p.lon],{radius:9,color:'#222',weight:1,fillColor:col,fillOpacity:.95}).addTo(map);
-      m.bindTooltip(`${n}: ${v!=null?Math.round(v):'–'} µg/m³`); m.on('click',()=>{ sel.value=n; show(n); }); markers[n]=m;
+      m.bindTooltip(`${n}: ${POLS[POL].name} ${v!=null?Math.round(v):'–'} µg/m³`); m.on('click',()=>{ sel.value=n; show(n); }); markers[n]=m;
     });
   }
   sel.onchange=()=>show(sel.value);
   // 1 km maps
   if(FC){ const tabs=document.getElementById('mapTabs');
     tabs.innerHTML=FC.lead_dates.map((d,i)=>`<button type="button" aria-pressed="${i===0}" data-i="${i}">${['Today','Tomorrow','Day after'][i]} · ${fmtDay(d)}</button>`).join('');
-    const img=document.getElementById('mapImg'); img.src=FC.maps[0]+'?t='+Date.now();
+    const img=document.getElementById('mapImg'); img.src=FC.maps[0]+'?t='+Date.now(); img.alt=`1 km ${POLS[POL].name} forecast map`;
     tabs.querySelectorAll('button').forEach(b=>b.onclick=()=>{ tabs.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); img.src=FC.maps[+b.dataset.i]+'?t='+Date.now(); });
   }
-  if(st.length) show(st.includes('Revenue Colony-Shivajinagar')?'Revenue Colony-Shivajinagar':st[0]);
+  else { document.getElementById('mapTabs').innerHTML=''; document.getElementById('mapImg').removeAttribute('src'); }
+  document.getElementById('mapNote').textContent=POLS[POL].note;
+  const keep=window._cur && st.includes(window._cur)? window._cur : null;
+  if(st.length) show(keep || (st.includes('Revenue Colony-Shivajinagar')?'Revenue Colony-Shivajinagar':st[0]));
 }
 
 function show(n){
+  window._cur=n;
   document.getElementById('stSel').value=n;
   const f=FC?.stations.find(s=>s.name===n), r=RT?.stations.find(s=>s.name===n);
   document.getElementById('liveVal').textContent= r? Math.round(r.value) : '–';
@@ -178,7 +192,7 @@ function show(n){
   document.getElementById('liveTime').textContent= r? `24-h average up to ${r.time} IST (range over that period ${r.min ?? '–'}–${r.max ?? '–'})` : 'No live reading';
   document.getElementById('days').innerHTML=[0,1,2].map(i=>{ const v=f?.forecast?.[i]; return `<div class="day"><div class="label">${FC? fmtDay(FC.lead_dates[i]) : ['Today','Tomorrow','Day after'][i]}</div><div class="v">${v!=null?Math.round(v):'–'}</div>${badge(v)}</div>`; }).join('');
   const meth=f? [...new Set(f.method)] : [];
-  const notes={'F3s':'model forecast','persistence (no D-2)':"today = yesterday's value (the day before yesterday was not measured)",'F3s (D-1 filled from D-2)':"yesterday's value missing: estimated from the day before",'F3s level (no D-1)':"no recent measurement: model without the station's own history (less accurate)"};
+  const notes={'F3s (no own data: from neighbours)':'no recent measurement at this station: started from nearby stations','F3s':'model forecast','persistence (no D-2)':"today = yesterday's value (the day before yesterday was not measured)",'F3s (D-1 filled from D-2)':"yesterday's value missing: estimated from the day before",'F3s level (no D-1)':"no recent measurement: model without the station's own history (less accurate)"};
   document.getElementById('method').textContent= f? 'Method: '+meth.map(m=>notes[m]||m).join('; ') + (f.persistence!=null? ` · Yesterday measured ${Math.round(f.persistence)} µg/m³ (${f.yesterday_source})`:'') : 'No forecast for this station.';
   chart(r,f);
   Object.entries(markers).forEach(([k,m])=>m.setStyle({weight:k===n?3:1,color:k===n?css('--fg'):'#222'}));
@@ -190,11 +204,11 @@ function chart(r,f){
   const fc=(f&&FC)? FC.lead_dates.map((d,i)=>({t:new Date(d+'T12:00:00'),v:f.forecast[i]})).filter(p=>p.v!=null) : [];
   const all=[...pts,...fc]; if(!all.length){ svg.innerHTML='<text x="10" y="80">No data yet</text>'; return; }
   const t0=Math.min(...all.map(p=>+p.t)), t1=Math.max(...all.map(p=>+p.t))+3.6e6;
-  const vmax=Math.max(60,...all.map(p=>p.v))*1.1;
+  const vmax=Math.max(POLS[POL].ymin,...all.map(p=>p.v))*1.1;
   const X=t=>ml+(t-t0)/(t1-t0)*(W-ml-mr), Y=v=>mt+(1-v/vmax)*(H-mt-mb);
   let s='';
   for(let g=0; g<=vmax; g+= vmax>200?100:50){ s+=`<line x1="${ml}" x2="${W-mr}" y1="${Y(g)}" y2="${Y(g)}" stroke="var(--line)" stroke-width="1"/><text x="${ml-4}" y="${Y(g)+3}" text-anchor="end">${g}</text>`; }
-  [60,90,120].forEach(b=>{ if(b<vmax) s+=`<line x1="${ml}" x2="${W-mr}" y1="${Y(b)}" y2="${Y(b)}" stroke="var(${cls(b)[2]})" stroke-dasharray="3 3" stroke-width="1"/>`; });
+  POLS[POL].lines.forEach(b=>{ if(b<vmax) s+=`<line x1="${ml}" x2="${W-mr}" y1="${Y(b)}" y2="${Y(b)}" stroke="var(${cls(b)[2]})" stroke-dasharray="3 3" stroke-width="1"/>`; });
   if(pts.length){ s+=`<polyline fill="none" stroke="var(--fg)" stroke-width="1.8" points="${pts.map(p=>X(+p.t)+','+Y(p.v)).join(' ')}"/>`; pts.forEach(p=>s+=`<circle cx="${X(+p.t)}" cy="${Y(p.v)}" r="2.2" fill="var(--fg)"/>`); }
   fc.forEach(p=>{ s+=`<rect x="${X(+p.t)-9}" y="${Y(p.v)}" width="18" height="${Y(0)-Y(p.v)}" fill="var(${cls(p.v)[2]})" opacity=".85"/>`; });
   const days=[...new Set(all.map(p=>p.t.toDateString()))];
@@ -203,7 +217,14 @@ function chart(r,f){
   svg.innerHTML=s;
 }
 
-(async()=>{ [FC,RT]=await Promise.all([getJSON('data/forecast.json'),getJSON('data/realtime.json')]); render(); })();
+async function load(p){
+  POL=p; CLS=POLS[p].cls;
+  document.querySelectorAll('#polTabs button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.p===p));
+  [FC,RT]=await Promise.all([getJSON(POLS[p].fc),getJSON(POLS[p].rt)]);
+  setLegend(); render();
+}
+document.querySelectorAll('#polTabs button').forEach(b=>b.onclick=()=>{ if(b.dataset.p!==POL){ load(b.dataset.p); history.replaceState(null,'',b.dataset.p==='PM10'?'#pm10':'#'); } });
+load(location.hash.toLowerCase()==='#pm10'?'PM10':'PM25');
 </script>
 </body>
 </html>
